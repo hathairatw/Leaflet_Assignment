@@ -1,0 +1,32 @@
+---
+title: "Leaflet Assignment"
+author: "Hathairat W"
+date: "8 June 2019"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## My running route
+
+```{r map}
+
+library(leaflet)
+
+MyIcon <- makeIcon(iconUrl = "D:/Users/wittha/Documents/RStudio/running.jpg",
+  iconWidth = 40, iconHeight = 40, iconAnchorX = 22, iconAnchorY = 10)
+MyStop <- data.frame(
+  Location=c("Samsung Hub","The Promontory","Red Dot Design Museum","Marina Bay","ArtScience Museum","Flower Dome","Cloud Forest","Satay by the Bay","Marina Barrage","Marina East"), 
+  Latitude = c(1.283502,1.281801,1.280306,1.284354,1.286344,1.284906,1.283973,1.282375,1.280594,1.282356),
+  Longitude = c(103.849681,103.854028,103.856455,103.858213,103.859256,103.864674,103.865993,103.868579,103.871165,103.873767))
+
+MyStop <- leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat = MyStop$Latitude, lng = MyStop$Longitude, popup = MyStop$Location, icon = MyIcon) %>%
+  addControl("My running route", position = "bottomright")
+
+MyStop
+```
+
